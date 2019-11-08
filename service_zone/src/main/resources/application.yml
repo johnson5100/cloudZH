@@ -1,0 +1,17 @@
+server:
+  port: 10000
+spring:
+  application:
+    name: eureka-server
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    peer-node-read-timeout-ms: 3600
