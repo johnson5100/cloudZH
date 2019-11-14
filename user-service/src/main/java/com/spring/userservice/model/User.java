@@ -1,7 +1,10 @@
 package com.spring.userservice.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @ClassName User
@@ -11,9 +14,14 @@ import lombok.ToString;
  **/
 @Data
 @ToString
-public class User {
+//@EqualsAndHashCode
+public class User implements Serializable {
 
     private int id;
     private String userAccount;
     private String userName;
+
+
+
+
 }

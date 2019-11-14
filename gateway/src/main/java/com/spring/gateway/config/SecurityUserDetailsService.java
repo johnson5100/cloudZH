@@ -16,13 +16,6 @@ import reactor.core.publisher.Mono;
 @Component
 public class SecurityUserDetailsService implements ReactiveUserDetailsService {
 
-    @Value("${spring.security.user.name}")
-    private String userName;
-
-    @Value("${spring.security.user.password}")
-    private String password;
-
-
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -35,7 +28,7 @@ public class SecurityUserDetailsService implements ReactiveUserDetailsService {
         String token = stringRedisTemplate.opsForValue().get(username);
 
         if(!StringUtils.isBlank(token)){
-            UserDetails user = User.withUsername(userName)
+            UserDetails user = User.withUsername(username)
                     .password(token)
                     .roles("admin,user").
                             authorities(AuthorityUtils.commaSeparatedStringToAuthorityList("user"))
